@@ -28,7 +28,7 @@ class PowBackend:
                 #print('Written bytes')
                 s = self.ser.read(20)
                 print("Output: {}".format(s.hex()))
-                self.r.publish(message['data'], s[8:16])
+                self.r.publish(message['data'], s[8:16][::-1])
 
     def send_request(self, input_hash):
         self.ser.write(input_hash.encode('ascii'))
