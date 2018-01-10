@@ -19,12 +19,11 @@ def post_json_handler():
     print(content)
     p.subscribe(content['hash'])
     r.publish('requests', content['hash'])
-    while True:
-        message = p.get_message()
-        if message:
-            print(message)
-            break
 
+    for message in p.listen():
+        break
+
+    print(message)
     return jsonify(work=message['data'].hex())
 
 
