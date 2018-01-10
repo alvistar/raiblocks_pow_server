@@ -1,3 +1,4 @@
+import config
 import redis
 import serial
 import threading
@@ -5,7 +6,7 @@ import threading
 
 class PowBackend:
     def __init__(self):
-        self.ser = serial.Serial('/dev/tty.usbserial-FT2CZVA5B', 115200)
+        self.ser = serial.Serial(config.SERIAL, 115200)
         print(self.ser.name)
 
         self.r = redis.StrictRedis(host='localhost')
