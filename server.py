@@ -4,7 +4,7 @@ import redis
 from jsonschema import validate, ValidationError
 from flask import Flask
 from flask import jsonify, request, abort
-from usb_backend import PowBackend
+from fpga_backend import PowBackend
 
 schema = {
     "type": "object",

@@ -21,8 +21,9 @@ class PowBackend:
     def worker(self):
         for message in self.p.listen():
             logging.debug('Got pow request:{}'.format(message))
-            result = fpga_interface.do_pow(message['data'])
-            logging.debug("FPGA Output: {}".format(result))
+            result = bytes(fpga_interface.do_pow(message['data'].decode('ascii')))
+            logging.debug("FPGA Output: {}".format(result.hex()))
+            logging.debug("Pow: {}".format(result[8:16].hex()))
             self.r.publish(message['data'], result[8:16])
 
 if __name__ == "__main__":
