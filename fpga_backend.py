@@ -1,4 +1,3 @@
-import config
 import fpga_interface
 import logging
 import redis
@@ -25,6 +24,7 @@ class PowBackend:
             logging.debug("FPGA Output: {}".format(result.hex()))
             logging.debug("Pow: {}".format(result[8:16].hex()))
             self.r.publish(message['data'], result[8:16])
+
 
 if __name__ == "__main__":
     p = PowBackend()

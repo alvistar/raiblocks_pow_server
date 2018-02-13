@@ -40,8 +40,10 @@ def post_json_handler():
     for message in p.listen():
         break
 
+    data = message['data']
+
     logging.debug('Received message from PowBackend:{}'.format(message))
-    logging.info('POW:{}'.format(message['data'].hex()))
+    logging.info('POW:{}'.format(data.hex()))
     return jsonify(work=message['data'].hex())
 
 
